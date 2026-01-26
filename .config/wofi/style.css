@@ -1,42 +1,40 @@
+/* General Window */
 window {
     margin: 0px;
-    border: 2px solid #1e1e2e;
-    background-color: #1e1e2e;
+    border: 2px solid #7FBBB3; /* Teal Border */
+    background-color: #2D353B; /* Everforest Dark Background */
     border-radius: 10px;
+    font-family: "Fira Sans"; /* Your Interface Font */
+    font-size: 14px;
 }
 
+/* Input Bar */
 #input {
     margin: 5px;
     border: none;
-    background-color: #313244;
-    color: #cdd6f4;
+    background-color: #3A454A; /* Slightly lighter for input */
+    color: #D3C6AA; /* Cream Text */
     border-radius: 5px;
 }
 
+/* Inner Box */
 #inner-box {
     margin: 5px;
     border: none;
-    background-color: #1e1e2e;
+    background-color: transparent;
 }
 
-#outer-box {
+/* List Items */
+#entry {
     margin: 5px;
     border: none;
-    background-color: #1e1e2e;
+    background-color: transparent;
+    color: #D3C6AA;
 }
 
-#scroll {
-    margin: 0px;
-    border: none;
-}
-
-#text {
-    margin: 5px;
-    border: none;
-    color: #cdd6f4;
-}
-
+/* Selected Item */
 #entry:selected {
-    background-color: #313244;
+    background-color: #7FBBB3; /* Teal Accent */
+    color: #2D353B; /* Dark Text for contrast */
     border-radius: 5px;
 }
