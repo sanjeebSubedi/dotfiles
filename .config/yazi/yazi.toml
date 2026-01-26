@@ -1,0 +1,6 @@
+[opener]
+edit = [
+    # Use the $EDITOR variable, fallback to 'vi' if variable is missing
+    { run = '${EDITOR:-vi} "$@"', block = true, for = "unix" },
+#    { run = '${EDITOR:-vi} %s', block = true, for = "unix" },
+]
