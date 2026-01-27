@@ -1,0 +1,20 @@
+
+headerbar, .titlebar {
+    font-family: "Fira Sans";
+    font-weight: 600; /* SemiBold */
+    font-size: 10pt;
+}
+
+::selection {
+    background-color: #d3c6aa; /* Everforest Cream (Very Bright) */
+    color: #272e33;            /* Everforest Dark (Very Dark) */
+}
+
+textview text selection,
+entry selection,
+label selection,
+flowbox flowboxchild:selected,
+list row:selected {
+    background-color: #d3c6aa;
+    color: #272e33;
+}
