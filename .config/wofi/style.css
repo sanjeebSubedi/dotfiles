@@ -1,10 +1,10 @@
 /* General Window */
 window {
     margin: 0px;
-    border: 2px solid #7FBBB3; /* Teal Border */
-    background-color: #2D353B; /* Everforest Dark Background */
+    border: 2px solid #7FBBB3;
+    background-color: #2D353B;
     border-radius: 10px;
-    font-family: "Fira Sans"; /* Your Interface Font */
+    font-family: "SF Pro Display";
     font-size: 14px;
 }
 
@@ -12,8 +12,8 @@ window {
 #input {
     margin: 5px;
     border: none;
-    background-color: #3A454A; /* Slightly lighter for input */
-    color: #D3C6AA; /* Cream Text */
+    background-color: #3A454A;
+    color: #D3C6AA;
     border-radius: 5px;
 }
 
@@ -34,7 +34,12 @@ window {
 
 /* Selected Item */
 #entry:selected {
-    background-color: #7FBBB3; /* Teal Accent */
-    color: #2D353B; /* Dark Text for contrast */
+    background-color: #7FBBB3;
+    color: #2D353B;
     border-radius: 5px;
+}
+
+/* Icon spacing */
+#img {
+    margin-right: 10px;
 }
