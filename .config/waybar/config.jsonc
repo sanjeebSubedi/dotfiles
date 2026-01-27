@@ -1,52 +1,95 @@
 {
-    "layer": "top",
-    "position": "top",
-    "height": 34,
-    "spacing": 4,
-    "modules-left": ["hyprland/workspaces"],
-    "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "network", "backlight", "battery", "tray"],
+  "layer": "top",
+  "position": "top",
+  "height": 28,
+  "spacing": 0,
+  "modules-left": ["hyprland/workspaces"],
+  "modules-center": ["clock"],
+  "modules-right": [
+    "idle_inhibitor",
+    "bluetooth",
+    "network",
+    "pulseaudio",
+    "backlight",
+    "battery",
+    "tray",
+    "custom/power-menu",
+  ],
 
-    // --- MODULE CONFIGURATION ---
-
-    "hyprland/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": true,
-        "format": "{name}"
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "󰅶",
+      "deactivated": "󰛊",
     },
+    "tooltip-format-activated": "Idle inhibitor: ON\nScreen will not sleep",
+    "tooltip-format-deactivated": "Idle inhibitor: OFF\nNormal sleep behavior",
+  },
 
-    "clock": {
-        "format": "{:%H:%M  %a %d}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>"
-    },
+  "bluetooth": {
+    "format": "󰂯",
+    "format-disabled": "󰂲",
+    "format-connected": "󰂱 {num_connections}",
+    "format-connected-battery": "󰂱 {device_battery_percentage}%",
+    "tooltip-format": "{controller_alias}\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias} ({device_battery_percentage}%)",
+    "on-click": "blueman-manager",
+  },
 
-    "battery": {
-        "states": {
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon}  {capacity}%",
-        "format-charging": "  {capacity}%",
-        "format-icons": ["", "", "", "", ""]
-    },
+  "network": {
+    "interface": "wl*",
+    "format-wifi": "󰤨",
+    "format-ethernet": "󰈀",
+    "format-disconnected": "󰤭",
+    "tooltip-format-wifi": "󰤨  {essid}\n󰩟  {ipaddr}\n󰣺  {signalStrength}%",
+    "tooltip-format-ethernet": "󰈀  {ifname}\n󰩟  {ipaddr}",
+    "tooltip-format-disconnected": "󰤭  Disconnected",
+    "on-click": "kitty --class nmtui-float -e nmtui",
+  },
 
-    "network": {
-        "format-wifi": "  {essid}",
-        "format-ethernet": " Connected",
-        "format-disconnected": "⚠ Disconnected"
-    },
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "format": "{name}",
+  },
 
-    "pulseaudio": {
-        "format": "{icon}  {volume}%",
-        "format-muted": "🔇 Muted",
-        "format-icons": {
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol"
+  "clock": {
+    "format": "{:%H:%M  %a %d}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>",
+  },
+
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15,
     },
-    
-    "backlight": {
-        "format": "{icon} {percent}%",
-        "format-icons": ["", "", "", "", "", "", "", "", ""]
-    }
+    "format": "{icon} {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
+    "format-plugged": "󰚥 {capacity}%",
+    "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰝟 Muted",
+    "format-icons": {
+      "headphone": "󰋋",
+      "headset": "󰋎",
+      "default": ["󰕿", "󰖀", "󰕾"],
+    },
+    "on-click": "pavucontrol",
+  },
+
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-icons": ["󰃞", "󰃟", "󰃠"],
+  },
+
+  "custom/power-menu": {
+    "format": "⏻",
+    "tooltip-format": "Power Menu",
+    "on-click": "wlogout -b 5 -r 1 -c 5 -L 500 -R 500 -T 450 -B 450",
+  },
 }
