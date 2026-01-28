@@ -57,6 +57,7 @@ window#waybar {
 
 #clock {
     margin-right: 10px;
+    font-weight: 600;
 }
 
 #idle_inhibitor.activated {
