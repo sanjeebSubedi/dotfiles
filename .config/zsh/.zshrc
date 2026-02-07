@@ -22,6 +22,9 @@ alias c='clear'
 alias dot='cd ~/.local/dotfiles'
 alias rice='nvim ~/.config/hypr/hyprland.conf'
 
+alias cat='bat --style=plain'
+alias diff='delta'
+
 # --- EZA ALIASES ---
 # Replace standard 'ls' with eza (with icons)
 alias ls='eza --icons'
