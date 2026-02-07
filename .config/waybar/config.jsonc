@@ -47,7 +47,7 @@
     "tooltip-format-wifi": "󰤨  {essid}\n󰩟  {ipaddr}\n󰣺  {signalStrength}%",
     "tooltip-format-ethernet": "󰈀  {ifname}\n󰩟  {ipaddr}",
     "tooltip-format-disconnected": "󰤭  Disconnected",
-    "on-click": "kitty --class nmtui-float -e nmtui",
+    "on-click": "kitty --class imapala-float -e impala",
   },
 
   "hyprland/workspaces": {
