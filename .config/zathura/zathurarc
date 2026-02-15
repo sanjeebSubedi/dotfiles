@@ -1,0 +1,36 @@
+set selection-clipboard clipboard
+
+# Everforest Light theme
+set default-bg "#fdf6e3"
+set default-fg "#5c6a72"
+
+set statusbar-bg "#f3ead3"
+set statusbar-fg "#5c6a72"
+
+set inputbar-bg "#fdf6e3"
+set inputbar-fg "#5c6a72"
+
+set notification-bg "#fdf6e3"
+set notification-fg "#5c6a72"
+set notification-error-bg "#e67e80"
+set notification-error-fg "#fdf6e3"
+set notification-warning-bg "#dbbc7f"
+set notification-warning-fg "#fdf6e3"
+
+set highlight-color "#a7c080"
+set highlight-active-color "#7fbbb3"
+
+set completion-bg "#f3ead3"
+set completion-fg "#5c6a72"
+set completion-highlight-bg "#7fbbb3"
+set completion-highlight-fg "#fdf6e3"
+
+set recolor-lightcolor "#fdf6e3"
+set recolor-darkcolor "#5c6a72"
+set recolor false
+
+# Padding and appearance
+set statusbar-h-padding 10
+set statusbar-v-padding 10
+set page-padding 2
+
