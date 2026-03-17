@@ -1,4 +1,4 @@
-return { -- <--- THIS "return {" IS CRITICAL
+return { 
     {
         "neanias/everforest-nvim",
         lazy = false,
@@ -11,15 +11,4 @@ return { -- <--- THIS "return {" IS CRITICAL
             vim.cmd([[colorscheme everforest]])
         end,
     },
-    {
-        "nvim-lualine/lualine.nvim",
-        dependencies = { "nvim-tree/nvim-web-devicons" },
-        config = function()
-            require("lualine").setup({ options = {
-                theme = "everforest",
-                section_separators = { left = '', right = '' },
-                component_separators = { left = '', right = '' },
-            } })
-        end,
-    }
-} -- <--- CLOSE THE TABLE
+} 

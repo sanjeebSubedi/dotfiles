@@ -5,7 +5,8 @@ vim.g.mapleader = " "
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.wrap = false
-vim.opt.termguicolors = true -- Required for themes
+vim.opt.termguicolors = true
+vim.opt.signcolumn = "yes"
 
 -- Indentation
 vim.opt.tabstop = 4
@@ -24,5 +25,7 @@ vim.opt.mouse = "a"
 vim.opt.clipboard = "unnamedplus"
 vim.opt.undofile = true
 vim.opt.scrolloff = 8
-
+vim.opt.updatetime = 250
 vim.opt.cmdheight = 0
+
+vim.diagnostic.enable(false)

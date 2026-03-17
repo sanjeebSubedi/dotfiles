@@ -4,7 +4,7 @@ return {
 
   dependencies = {
     'nvim-lua/plenary.nvim',
-    'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+    'nvim-tree/nvim-web-devicons',
     'MunifTanjim/nui.nvim',
   },
 
@@ -12,25 +12,26 @@ return {
 
   keys = {
     { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
-    { '<leader>gs', ':Neotree float git_status<CR>', desc = 'Git Status Tree', silent = true },
+    { '<leader>gS', ':Neotree float git_status<CR>', desc = 'Git Status Tree', silent = true },
   },
+
+  config = function(_, opts)
+    require("neo-tree").setup(opts)
+    -- Set cursor line highlight for neo-tree
+    vim.api.nvim_set_hl(0, "NeoTreeCursorLine", { bg = "#2a2a2a" })
+  end,
 
   opts = {
     close_if_last_window = true,
     popup_border_style = "rounded",
 
-    -- Enable diagnostics and git integration
     enable_git_status = true,
     enable_diagnostics = true,
 
     default_component_configs = {
-      -- Turn on the extra data columns
       file_size = { enabled = true, width = 12 },
       type = { enabled = true, width = 10 },
       last_modified = { enabled = true, width = 20 },
-    },
-    highlight = {
-        NeoTreeCursorLine = { bg = "#2a2a2a", fg = "NONE" },
     },
 
     filesystem = {
@@ -38,7 +39,7 @@ return {
       use_libuv_file_watcher = true,
       filtered_items = {
         visible = false,
-        hide_dotfiles = false, -- Keep dotfiles visible
+        hide_dotfiles = false,
         hide_gitignored = true,
       },
 
@@ -51,7 +52,6 @@ return {
       },
     },
 
-    -- The Git Window specific mappings
     git_status = {
       window = {
         mappings = {

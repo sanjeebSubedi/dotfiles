@@ -20,5 +20,4 @@ map("n", "]d", vim.diagnostic.goto_next, "Next Diagnostic")
 map("n", "[d", vim.diagnostic.goto_prev, "Previous Diagnostic")
 map("n", "gl", vim.diagnostic.open_float, "Show Diagnostic Line")
 
-vim.cmd([[let &t_Cs = "\e[4:3m"]])
-vim.cmd([[let &t_Ce = "\e[4:0m"]])
+
