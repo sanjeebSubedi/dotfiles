@@ -14,8 +14,8 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # 4. Basic Options
-setopt autocd              # cd by typing directory name
-bindkey -e                 # Emacs key bindings (standard)
+setopt autocd # cd by typing directory name
+bindkey -e    # Emacs key bindings (standard)
 
 # --- ALIASES ---
 alias c='clear'
@@ -35,11 +35,12 @@ alias ll='eza -la --icons --git --group-directories-first'
 # 'lt' for a tree view (better than the 'tree' command)
 alias lt='eza --tree --level=2 --icons'
 
+alias zed='zeditor'
+
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 # Bind Up and Down arrow keys
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
-
 
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
@@ -61,6 +62,9 @@ export FZF_DEFAULT_OPTS='
   --color=fg:#D3C6AA,header:#A7C080,info:#DBBC7F,pointer:#7FBBB3
   --color=marker:#7FBBB3,fg+:#D3C6AA,prompt:#DBBC7F,hl+:#A7C080
   --height=40% --layout=reverse --border'
+
+export LLAMA_CPP_PATH="$HOME/Desktop/source-builds/llama.cpp/"
+export PATH="$PATH:$LLAMA_CPP_PATH/build/bin"
 
 alias rg='rg --smart-case'
 alias rgf='rg --files-with-matches'
