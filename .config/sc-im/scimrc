@@ -1,0 +1,76 @@
+# sc-im Configuration
+# Based on documentation: https://raw.githubusercontent.com/andmarti1424/sc-im/freeze/src/doc
+
+# Auto-recalculate on changes
+set autocalc
+
+# Numeric input behavior
+# set numeric=1
+# set numeric_decimal=1
+
+# Truncate cell content if it exceeds column width
+set overlap
+
+# Mappings
+# i: insert number (=), I: insert string (<)
+nnoremap "i" "="
+nnoremap "I" "<"
+
+# a: edit number (e), A: edit string (E)
+nnoremap "a" "e"
+nnoremap "A" "E"
+
+# Visual settings
+# set underline_grid
+set show_cursor
+
+# Half page scrolling (like vim Ctrl+D/U)
+set half_page_scroll=1
+
+# Input bar position (0=top, 1=bottom)
+set input_bar_bottom=1
+
+# Ignore case in searches
+set ignorecase
+
+# Newline action (0=none, j=down, l=right)
+set newline_action=j
+
+# --- Everforest Dark Hard Theme ---
+# Relying on terminal's color palette (Kitty is already themed)
+
+# Default cells (Foreground: FG, Background: BG from terminal)
+color "type=NORMAL fg=DEFAULT_COLOR bg=DEFAULT_COLOR"
+
+# Grid lines (Subtle grey)
+color "type=GRID_EVEN fg=BLACK bg=DEFAULT_COLOR"
+color "type=GRID_ODD fg=BLACK bg=DEFAULT_COLOR"
+
+# Headings (Row/Col headers) - Green text on dark background
+color "type=HEADINGS fg=GREEN bg=BLACK bold=1"
+color "type=HEADINGS_ODD fg=GREEN bg=BLACK bold=1"
+
+# Selection (Reverse video or specific color)
+# Using Cyan for selection to match other apps
+color "type=CELL_SELECTION fg=BLACK bg=CYAN"
+color "type=CELL_SELECTION_SC fg=BLACK bg=CYAN"
+
+# Input/Command bar
+color "type=INPUT fg=WHITE bg=BLACK"
+color "type=MODE fg=YELLOW bg=BLACK bold=1"
+
+# Strings (Blue)
+color "type=STRG fg=BLUE bg=DEFAULT_COLOR"
+
+# Numbers (Purple/Magenta)
+color "type=NUMB fg=MAGENTA bg=DEFAULT_COLOR"
+
+# Expressions (Orange/Red)
+color "type=EXPRESSION fg=RED bg=DEFAULT_COLOR"
+
+# Errors
+color "type=CELL_ERROR fg=RED bg=BLACK bold=1"
+color "type=ERROR_MSG fg=RED bg=BLACK bold=1"
+
+# Information
+color "type=INFO_MSG fg=YELLOW bg=BLACK"
