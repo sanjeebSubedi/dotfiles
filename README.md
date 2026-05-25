@@ -77,6 +77,7 @@ qt5ct qt6ct                               # Qt theming
 neovim
 google-chrome (AUR) / firefox
 pavucontrol                               # Audio control
+mpd rmpc                                  # Music daemon + TUI client
 ```
 
 ---
@@ -85,8 +86,8 @@ pavucontrol                               # Audio control
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/YOUR_USERNAME/dotfiles.git ~/.local/dotfiles
-cd ~/.local/dotfiles
+git clone https://github.com/sanjeebSubedi/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
 ```
 
 ### 2. Install GNU Stow
@@ -97,12 +98,12 @@ sudo pacman -S stow
 ### 3. Stow the dotfiles
 ```bash
 # From inside the dotfiles directory
-stow .
+stow config zsh
 ```
 
-This will symlink all configurations to their appropriate locations:
-- `.config/*` → `~/.config/*`
-- `.zshenv` → `~/.zshenv`
+This symlinks each package's contents into `$HOME`:
+- `config/.config/*` → `~/.config/*`
+- `zsh/.zshenv` → `~/.zshenv`
 
 ### 4. Set Zsh as default shell
 ```bash
@@ -117,24 +118,28 @@ Restart your session to apply all changes.
 ## Structure
 
 ```
-~/.local/dotfiles/
-├── .config/
-│   ├── hypr/                # Hyprland, hyprlock, hypridle, hyprpaper, hyprsunset
-│   ├── waybar/              # Status bar config and styling
-│   ├── kitty/               # Terminal emulator
-│   ├── fuzzel/              # App launcher
-│   ├── mako/                # Notifications
-│   ├── wlogout/             # Power menu
-│   ├── nvim/                # Neovim (Lazy.nvim)
-│   ├── zsh/                 # Zsh config, history
-│   ├── starship/            # Prompt configuration
-│   ├── yazi/                # Terminal file manager
-│   ├── fontconfig/          # Font rendering & fallbacks
-│   ├── gtk-3.0/             # GTK3 theme settings
-│   ├── gtk-4.0/             # GTK4 theme settings
-│   ├── nwg-look/            # GTK appearance tool config
-│   └── environment.d/       # Systemd user environment
-├── .zshenv                  # Environment variables & XDG paths
+~/.dotfiles/
+├── config/                  # Stow package → ~/.config/
+│   └── .config/
+│       ├── hypr/            # Hyprland, hyprlock, hypridle, hyprpaper, hyprsunset
+│       ├── waybar/          # Status bar config and styling
+│       ├── kitty/           # Terminal emulator
+│       ├── fuzzel/          # App launcher
+│       ├── mako/            # Notifications
+│       ├── wlogout/         # Power menu
+│       ├── nvim/            # Neovim (Lazy.nvim)
+│       ├── zsh/             # Zsh config, history
+│       ├── starship/        # Prompt configuration
+│       ├── yazi/            # Terminal file manager
+│       ├── mpd/             # Music daemon (rmpc backend)
+│       ├── fontconfig/      # Font rendering & fallbacks
+│       ├── gtk-3.0/         # GTK3 theme settings
+│       ├── gtk-4.0/         # GTK4 theme settings
+│       ├── nwg-look/        # GTK appearance tool config
+│       └── environment.d/   # Systemd user environment
+├── zsh/                     # Stow package → ~/
+│   └── .zshenv              # Environment variables & XDG paths
+├── screenshots/
 ├── .gitignore
 └── README.md
 ```

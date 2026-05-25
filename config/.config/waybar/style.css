@@ -1,0 +1,112 @@
+* {
+  border: none;
+  border-radius: 0;
+  font-family: "BlexMono Nerd Font";
+  font-size: 14px;
+  min-height: 0;
+}
+
+window#waybar {
+  background: #232a2e;
+  color: white;
+  margin: 0px;
+  padding: 0px;
+}
+
+#custom-arch {
+  background: transparent;
+  color: #7fbbb3;
+  font-size: 22px;
+  padding: 0 4px 0 6px;
+  margin: 0;
+}
+
+#workspaces {
+  background: transparent;
+  margin: 0 5px;
+  padding: 0 5px;
+  border-radius: 0;
+}
+
+#workspaces button {
+  padding: 0 5px;
+  color: #d3c6aa;
+}
+
+#workspaces button.active {
+  color: #a7c080;
+}
+
+#clock,
+#battery,
+#network,
+#pulseaudio,
+#backlight,
+#tray,
+#bluetooth,
+#idle_inhibitor,
+#custom-power-menu {
+  background: transparent;
+  padding: 0 10px;
+  margin: 0 2px;
+  border-radius: 0;
+  color: #d3c6aa;
+}
+
+#clock:hover,
+#battery:hover,
+#network:hover,
+#pulseaudio:hover,
+#backlight:hover,
+#idle_inhibitor:hover,
+#bluetooth:hover {
+  color: #7fbbb3;
+}
+
+#clock {
+  margin-right: 10px;
+  font-weight: 600;
+}
+
+#idle_inhibitor.activated {
+  color: #a7c080;
+}
+
+#idle_inhibitor.deactivated {
+  color: #859289;
+}
+
+/* Bluetooth states */
+#bluetooth {
+  color: #859289;
+}
+
+#bluetooth.connected {
+  color: #7fbbb3;
+}
+
+#bluetooth.disabled,
+#bluetooth.off {
+  color: #5c6a72;
+}
+
+#custom-power-menu {
+  color: #d3c6aa;
+  margin-right: 10px;
+}
+
+#custom-power-menu:hover {
+  color: #7fbbb3;
+}
+
+#battery.charging {
+  color: #a7c080;
+}
+
+#battery.warning {
+  color: #dbbc7f;
+}
+
+#battery.critical {
+  color: #e67e80;
+}
