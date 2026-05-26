@@ -1,0 +1,10 @@
+: "${XDG_STATE_HOME:=$HOME/.local/state}"
+
+ZSH_STATE_DIR="$XDG_STATE_HOME/zsh"
+mkdir -p "$ZSH_STATE_DIR"
+
+HISTFILE="$ZSH_STATE_DIR/history"
+HISTSIZE=10000000
+SAVEHIST=10000000
+
+setopt appendhistory
