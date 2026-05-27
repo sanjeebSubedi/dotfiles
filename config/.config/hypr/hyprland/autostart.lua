@@ -1,17 +1,27 @@
 local M = {}
 
 local commands = {
+    -- Export session vars to D-Bus and systemd activation env first, so XDG
+    -- portals and polkit agents inherit WAYLAND_DISPLAY / XDG_CURRENT_DESKTOP.
+    "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP",
+
+    -- Core compositor services.
     "waybar",
     "hyprpaper",
     "mako",
     "hypridle",
-    "hyprsunset -t 3000",
+    "hyprsunset",
     "systemctl --user start hyprpolkitagent",
+
+    -- Clipboard history (wl-clipboard + cliphist).
     "wl-paste --type text --watch cliphist store",
     "wl-paste --type image --watch cliphist store",
-    "gsettings set org.gnome.desktop.interface cursor-size 16",
-    "mpd",
-    "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP",
+
+    -- GTK cursor size (must match XCURSOR_SIZE / HYPRCURSOR_SIZE in env.lua).
+    "gsettings set org.gnome.desktop.interface cursor-size 20",
+
+    -- mpd is managed via systemd socket activation (mpd.socket).
+    -- Enable once with: systemctl --user enable --now mpd.socket
 }
 
 function M.setup()

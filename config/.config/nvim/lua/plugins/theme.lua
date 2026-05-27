@@ -1,4 +1,4 @@
-return { 
+return {
     {
         "neanias/everforest-nvim",
         lazy = false,
@@ -11,4 +11,4 @@ return {
             vim.cmd([[colorscheme everforest]])
         end,
     },
-} 
+}

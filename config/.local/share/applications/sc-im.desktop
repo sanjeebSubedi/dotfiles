@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=sc-im
+GenericName=Spreadsheet
+Comment=Edit CSV files in sc-im
+Exec=kitty -e sc-im %F
+Terminal=false
+Icon=x-office-spreadsheet
+MimeType=text/csv;text/x-csv;application/csv;
+Categories=Office;Spreadsheet;
+NoDisplay=true

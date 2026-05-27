@@ -15,11 +15,10 @@ video/mkv=mpv.desktop
 video/webm=mpv.desktop
 video/avi=mpv.desktop
 video/mov=mpv.desktop
-x-scheme-handler/viber=viber.desktop
 text/csv=sc-im.desktop
 text/x-csv=sc-im.desktop
 application/csv=sc-im.desktop
 x-scheme-handler/claude-cli=claude-code-url-handler.desktop
 
 [Added Associations]
-application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;
+application/pdf=org.pwmt.zathura.desktop;

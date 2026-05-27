@@ -4,36 +4,51 @@
 # Usage: screen-record.sh [screen|region|region-audio]
 
 RECORDINGS_DIR="$HOME/Videos/Recordings"
-PIDFILE="/tmp/wf-recorder.pid"
+PIDFILE="${XDG_RUNTIME_DIR:-/tmp}/wf-recorder.pid"
 
 mkdir -p "$RECORDINGS_DIR"
 
-# If already recording, stop it
-if [ -f "$PIDFILE" ] && kill -0 "$(cat "$PIDFILE")" 2>/dev/null; then
-    kill -INT "$(cat "$PIDFILE")"
-    wait "$(cat "$PIDFILE")" 2>/dev/null
+stop_recording() {
+    local pid="$1"
+
+    kill -INT "$pid"
+    for _ in {1..50}; do
+        kill -0 "$pid" 2>/dev/null || return 0
+        sleep 0.1
+    done
+
+    return 1
+}
+
+if [ -f "$PIDFILE" ]; then
+    RECORDER_PID="$(cat "$PIDFILE" 2>/dev/null || true)"
+    if [ -n "$RECORDER_PID" ] && kill -0 "$RECORDER_PID" 2>/dev/null; then
+        if stop_recording "$RECORDER_PID"; then
+            notify-send -u low -i video-x-generic "Recording Stopped" "Saved to $RECORDINGS_DIR"
+        else
+            notify-send -u normal -i video-x-generic "Recording Stop Requested" "wf-recorder is still shutting down"
+        fi
+        rm -f "$PIDFILE"
+        exit 0
+    fi
+
     rm -f "$PIDFILE"
-    notify-send -u low -i video-x-generic "Recording Stopped" "Saved to $RECORDINGS_DIR"
-    exit 0
 fi
 
-# Build the filename
 FILENAME="$RECORDINGS_DIR/Recording-$(date +'%Y-%m-%d_%H-%M-%S').mp4"
-
-# Determine mode
 MODE="${1:-screen}"
+WF_RECORDER=(wf-recorder -f "$FILENAME")
 
 case "$MODE" in
     screen)
-        wf-recorder -f "$FILENAME" &
         ;;
     region)
         GEOMETRY="$(slurp 2>/dev/null)" || exit 1
-        wf-recorder -g "$GEOMETRY" -f "$FILENAME" &
+        WF_RECORDER=(wf-recorder -g "$GEOMETRY" -f "$FILENAME")
         ;;
     region-audio)
         GEOMETRY="$(slurp 2>/dev/null)" || exit 1
-        wf-recorder -g "$GEOMETRY" --audio -f "$FILENAME" &
+        WF_RECORDER=(wf-recorder -g "$GEOMETRY" --audio -f "$FILENAME")
         ;;
     *)
         notify-send -u critical "Screen Record" "Unknown mode: $MODE"
@@ -41,5 +56,6 @@ case "$MODE" in
         ;;
 esac
 
-echo $! > "$PIDFILE"
+"${WF_RECORDER[@]}" &
+echo "$!" > "$PIDFILE"
 notify-send -u low -i media-record "Recording Started" "$MODE mode"

@@ -14,7 +14,7 @@ return {
                 "shfmt",
                 "eslint_d",
                 "shellcheck",
-                "markdownlint", 
+                "markdownlint",
             },
         })
     end,

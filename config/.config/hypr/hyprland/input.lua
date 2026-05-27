@@ -11,7 +11,7 @@ hl.config({
         repeat_delay = 300,
         touchpad = {
             natural_scroll = true,
-            scroll_factor = 0.2,
+            scroll_factor = 0.7,
         },
     },
 })
@@ -20,9 +20,4 @@ hl.gesture({
     fingers = 3,
     direction = "horizontal",
     action = "workspace",
-})
-
-hl.device({
-    name = "epic-mouse-v1",
-    sensitivity = -0.5,
 })

@@ -75,6 +75,11 @@
     "format-charging": "󰂄 {capacity}%",
     "format-plugged": "󰚥 {capacity}%",
     "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    "tooltip-format": "{capacity}% • {timeTo}",
+    "tooltip-format-charging": "{capacity}% • Charging ({timeTo})",
+    "tooltip-format-plugged": "{capacity}% • Plugged in",
+    "tooltip-format-full": "Full",
+    "on-click": "~/.config/hypr/scripts/power-profile.sh",
   },
 
   "pulseaudio": {
