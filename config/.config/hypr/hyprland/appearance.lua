@@ -1,15 +1,16 @@
 hl.config({
     general = {
-        gaps_in = 0,
-        gaps_out = 0,
+        gaps_in = 5,
+        gaps_out = 8,
         border_size = 1,
         col = {
-            active_border = "rgb(859289)",
+            active_border = "rgb(B8BB26)",
+            -- active_border = "rgb(A7C080)",
             inactive_border = "rgb(333C43)",
         },
         resize_on_border = false,
         allow_tearing = false,
-        layout = "dwindle",
+        layout = "scrolling",
     },
 
     decoration = {
@@ -41,6 +42,17 @@ hl.config({
 
     master = {
         new_status = "master",
+    },
+
+    scrolling = {
+        column_width = 0.5,
+        direction = "right",
+        focus_fit_method = 1,
+        follow_focus = true,
+        follow_min_visible = 0.4,
+        fullscreen_on_one_column = true,
+        wrap_focus = true,
+        wrap_swapcol = true,
     },
 
     misc = {

@@ -1,6 +1,11 @@
 local M = {}
 
 local main_mod = "SUPER"
+local normal_gaps = {
+    gaps_in = 5,
+    gaps_out = 8,
+}
+local gaps_enabled = true
 
 local function bind(keys, dispatcher, opts)
     return hl.bind(keys, dispatcher, opts)
@@ -8,6 +13,28 @@ end
 
 local function exec(command)
     return hl.dsp.exec_cmd(command)
+end
+
+local function toggle_layout()
+    local current_layout = hl.get_config("general.layout")
+    local next_layout = current_layout == "scrolling" and "dwindle" or "scrolling"
+
+    hl.config({
+        general = {
+            layout = next_layout,
+        },
+    })
+end
+
+local function toggle_gaps()
+    gaps_enabled = not gaps_enabled
+
+    hl.config({
+        general = {
+            gaps_in = gaps_enabled and normal_gaps.gaps_in or 0,
+            gaps_out = gaps_enabled and normal_gaps.gaps_out or 0,
+        },
+    })
 end
 
 local function setup_workspaces()
@@ -31,6 +58,8 @@ function M.setup(programs)
     bind(main_mod .. " + F", hl.dsp.window.float({ action = "toggle" }))
     bind(main_mod .. " + P", hl.dsp.window.pseudo())
     bind(main_mod .. " + J", hl.dsp.layout("togglesplit"))
+    bind(main_mod .. " + L", toggle_layout)
+    bind(main_mod .. " + G", toggle_gaps)
     bind(main_mod .. " + M", hl.dsp.window.fullscreen(1))
     bind(main_mod .. " + N", hl.dsp.window.move({ workspace = "special:minimized", silent = true }))
     bind(main_mod .. " + SHIFT + N", hl.dsp.workspace.toggle_special("minimized"))
