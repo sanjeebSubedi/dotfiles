@@ -99,7 +99,6 @@ function M.setup(programs)
     bind("XF86AudioPrev", exec("playerctl previous"), { locked = true })
 
     -- Utilities.
-    bind(main_mod .. " + TAB", exec("~/.config/hypr/scripts/window-list.sh"))
     bind(main_mod .. " + V", exec("cliphist list | " .. programs.menu .. " --dmenu | cliphist decode | wl-copy"))
     bind(main_mod .. " + S", exec('grim -g "$(slurp)" - | wl-copy'))
     bind(main_mod .. " + SHIFT + S", exec('grim -g "$(slurp)" - | swappy -f -'))
