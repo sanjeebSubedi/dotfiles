@@ -1,9 +1,6 @@
--- NVIDIA hybrid GPU/session environment.
-hl.env("LIBVA_DRIVER_NAME", "nvidia")
+-- Hybrid GPU/session environment.
+-- Keep Hyprland on the integrated GPU; use prime-run for NVIDIA offload.
 hl.env("XDG_SESSION_TYPE", "wayland")
-hl.env("GBM_BACKEND", "nvidia-drm")
-hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
-hl.env("WLR_NO_HARDWARE_CURSORS", "1")
 
 -- Terminal for GUI apps such as Thunar.
 hl.env("TERMINAL", "kitty")

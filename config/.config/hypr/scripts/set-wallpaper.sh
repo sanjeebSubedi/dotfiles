@@ -10,7 +10,7 @@ wallpaper="$state_dir/wallpaper.jpg"
 state_file="$state_dir/wallpaper-source"
 
 notify() {
-    command -v notify-send >/dev/null 2>&1 && notify-send "$@" || true
+    command -v notify-send >/dev/null 2>&1 && timeout 5s notify-send "$@" >/dev/null 2>&1 || true
 }
 
 if [[ -z "$source_file" || ! -f "$source_file" ]]; then
@@ -28,19 +28,23 @@ wallpaper_real="$(readlink -f -- "$wallpaper" 2>/dev/null || true)"
 source_state="$source_real|$(stat -c '%Y|%s' -- "$source_file")"
 
 changed=false
+mime_type="$(timeout 5s file --brief --mime-type -- "$source_file" 2>/dev/null || true)"
 
 if [[ "$source_real" == "$wallpaper_real" ]]; then
     printf '%s\n' "$source_state" > "$state_file"
 elif [[ -f "$wallpaper" && -f "$state_file" && "$(cat "$state_file")" == "$source_state" ]]; then
     :
-elif [[ -f "$wallpaper" && "$(file --brief --mime-type -- "$source_file")" == "image/jpeg" ]] && cmp -s -- "$source_file" "$wallpaper"; then
+elif [[ -f "$wallpaper" && "$mime_type" == "image/jpeg" ]] && timeout 10s cmp -s -- "$source_file" "$wallpaper"; then
     printf '%s\n' "$source_state" > "$state_file"
 else
     tmp_wallpaper="$(mktemp --tmpdir="$runtime_dir" "wallpaper.XXXXXX.jpg")"
     trap 'rm -f "$tmp_wallpaper"' EXIT
 
     if command -v magick >/dev/null 2>&1; then
-        magick "$source_file" -auto-orient "$tmp_wallpaper"
+        if ! timeout 60s magick "$source_file" -auto-orient "$tmp_wallpaper"; then
+            notify -u critical "Wallpaper" "Failed to prepare $(basename "$source_file")"
+            exit 1
+        fi
         chmod 0644 "$tmp_wallpaper"
         mv -f -- "$tmp_wallpaper" "$wallpaper"
     else
@@ -52,7 +56,7 @@ else
 fi
 
 if command -v hyprctl >/dev/null 2>&1 && pgrep -x hyprpaper >/dev/null 2>&1; then
-    hyprctl hyprpaper wallpaper ",$wallpaper,cover" >/dev/null 2>&1 || true
+    timeout 5s hyprctl hyprpaper wallpaper ",$wallpaper,cover" >/dev/null 2>&1 || true
 fi
 
 if [[ "$changed" == true ]]; then

@@ -32,5 +32,4 @@ set recolor false
 # Padding and appearance
 set statusbar-h-padding 10
 set statusbar-v-padding 10
-set page-padding 2
 

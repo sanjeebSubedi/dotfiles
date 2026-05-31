@@ -70,6 +70,39 @@ hl.window_rule({
     center = true,
 })
 
+hl.window_rule({
+    name = "wiremix-audio-popup",
+    match = {
+        class = "^wiremix-float$",
+    },
+    float = true,
+    size = "monitor_w*0.5 monitor_h*0.6",
+    rounding = 12,
+    center = true,
+})
+
+hl.window_rule({
+    name = "bluetui-bluetooth-popup",
+    match = {
+        class = "^bluetui-float$",
+    },
+    float = true,
+    size = "monitor_w*0.5 monitor_h*0.6",
+    rounding = 12,
+    center = true,
+})
+
+hl.window_rule({
+    name = "calcurse-calendar-popup",
+    match = {
+        class = "^calcurse-float$",
+    },
+    float = true,
+    size = "monitor_w*0.6 monitor_h*0.7",
+    rounding = 12,
+    center = true,
+})
+
 hl.layer_rule({
     name = "no-anim-launcher",
     match = {

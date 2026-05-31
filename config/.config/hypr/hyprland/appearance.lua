@@ -1,68 +1,68 @@
 hl.config({
-    general = {
-        gaps_in = 5,
-        gaps_out = 8,
-        border_size = 1,
-        col = {
-            active_border = "rgb(B8BB26)",
-            -- active_border = "rgb(A7C080)",
-            inactive_border = "rgb(333C43)",
-        },
-        resize_on_border = false,
-        allow_tearing = false,
-        layout = "scrolling",
-    },
+	general = {
+		gaps_in = 5,
+		gaps_out = 8,
+		border_size = 1,
+		col = {
+			-- active_border = "rgb(B8BB26)",
+			active_border = "rgb(A7C080)",
+			inactive_border = "rgb(333C43)",
+		},
+		resize_on_border = false,
+		allow_tearing = false,
+		layout = "scrolling",
+	},
 
-    decoration = {
-        rounding = 0,
-        rounding_power = 2,
-        active_opacity = 1.0,
-        inactive_opacity = 1.0,
-        shadow = {
-            enabled = false,
-            range = 4,
-            render_power = 3,
-            color = "rgba(1a1a1aee)",
-        },
-        blur = {
-            enabled = false,
-            size = 3,
-            passes = 1,
-            vibrancy = 0.1696,
-        },
-    },
+	decoration = {
+		rounding = 0,
+		rounding_power = 2,
+		active_opacity = 1.0,
+		inactive_opacity = 1.0,
+		shadow = {
+			enabled = false,
+			range = 4,
+			render_power = 3,
+			color = "rgba(1a1a1aee)",
+		},
+		blur = {
+			enabled = false,
+			size = 3,
+			passes = 1,
+			vibrancy = 0.1696,
+		},
+	},
 
-    animations = {
-        enabled = true,
-    },
+	animations = {
+		enabled = true,
+	},
 
-    dwindle = {
-        preserve_split = true,
-    },
+	dwindle = {
+		preserve_split = true,
+	},
 
-    master = {
-        new_status = "master",
-    },
+	master = {
+		new_status = "master",
+	},
 
-    scrolling = {
-        column_width = 0.5,
-        direction = "right",
-        focus_fit_method = 1,
-        follow_focus = true,
-        follow_min_visible = 0.4,
-        fullscreen_on_one_column = true,
-        wrap_focus = true,
-        wrap_swapcol = true,
-    },
+	scrolling = {
+		column_width = 0.85,
+		direction = "right",
+		focus_fit_method = 1,
+		follow_focus = true,
+		follow_min_visible = 0.4,
+		fullscreen_on_one_column = true,
+		wrap_focus = true,
+		wrap_swapcol = true,
+	},
 
-    misc = {
-        force_default_wallpaper = -1,
-        disable_hyprland_logo = false,
-        vrr = 1,
-        enable_swallow = true,
-        swallow_regex = "^(kitty)$",
-        swallow_exception_regex = "^(yazi-term)$",
-    },
+	misc = {
+		force_default_wallpaper = -1,
+		disable_hyprland_logo = false,
+		vrr = 1,
+		enable_swallow = true,
+		swallow_regex = "^(kitty)$",
+		swallow_exception_regex = "^(yazi-term)$",
+	},
 })
 
 hl.curve("easeOutQuint", { type = "bezier", points = { { 0.23, 1 }, { 0.32, 1 } } })

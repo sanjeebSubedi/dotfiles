@@ -1,2 +1,2 @@
 [binds]
-w = exec ~/.config/hypr/scripts/set-wallpaper.sh "$imv_current_file"
+w = exec sh -c 'setsid -f "$HOME/.config/hypr/scripts/set-wallpaper.sh" "$imv_current_file" >/dev/null 2>&1'

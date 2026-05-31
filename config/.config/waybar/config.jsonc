@@ -7,45 +7,99 @@
   "modules-left": ["custom/arch", "hyprland/workspaces"],
   "modules-center": ["clock"],
   "modules-right": [
-    "idle_inhibitor",
-    "bluetooth",
-    "network",
+    "group/tray-expander",
+    "bluetooth#connected",
+    "idle_inhibitor#outside",
     "pulseaudio",
-    "backlight",
+    "network",
     "battery",
-    "tray",
     "custom/power-menu",
   ],
 
-  "idle_inhibitor": {
+  "group/tray-expander": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 600,
+      "children-class": "tray-group-item",
+    },
+    "modules": [
+      "group/expand-icons",
+      "idle_inhibitor#tray",
+      "bluetooth#tray",
+      "backlight",
+      "tray",
+    ],
+  },
+
+  "group/expand-icons": {
+    "orientation": "inherit",
+    "modules": ["custom/expand-icon#horizontal"],
+  },
+
+  "custom/expand-icon#horizontal": {
+    "format": "",
+    "tooltip": false,
+    "on-scroll-up": "",
+    "on-scroll-down": "",
+    "on-scroll-left": "",
+    "on-scroll-right": "",
+  },
+
+  "idle_inhibitor#tray": {
     "format": "{icon}",
     "format-icons": {
-      "activated": "󰅶",
+      "activated": "",
       "deactivated": "󰛊",
     },
     "tooltip-format-activated": "Idle inhibitor: ON\nScreen will not sleep",
     "tooltip-format-deactivated": "Idle inhibitor: OFF\nNormal sleep behavior",
   },
 
-  "bluetooth": {
+  "idle_inhibitor#outside": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "󰅶",
+      "deactivated": "",
+    },
+    "tooltip-format-activated": "Idle inhibitor: ON\nScreen will not sleep",
+    "tooltip-format-deactivated": "Idle inhibitor: OFF\nNormal sleep behavior",
+  },
+
+  "bluetooth#tray": {
     "format": "󰂯",
     "format-disabled": "󰂲",
-    "format-connected": "󰂱 {num_connections}",
-    "format-connected-battery": "󰂱 {device_battery_percentage}%",
+    "format-connected": "",
+    "format-connected-battery": "",
     "tooltip-format": "{controller_alias}\n{num_connections} connected",
     "tooltip-format-connected": "{controller_alias}\n\n{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}",
     "tooltip-format-enumerate-connected-battery": "{device_alias} ({device_battery_percentage}%)",
-    "on-click": "blueman-manager",
+    "on-click": "hyprctl dispatch 'hl.dsp.exec_cmd(\"kitty --class bluetui-float -e bluetui\")'",
+  },
+
+  "bluetooth#connected": {
+    "format": "",
+    "format-disabled": "",
+    "format-off": "",
+    "format-on": "",
+    "format-no-controller": "",
+    "format-connected": "󰂱 {num_connections}",
+    "format-connected-battery": "󰂱 {device_battery_percentage}%",
+    "tooltip-format-connected": "{controller_alias}\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias} ({device_battery_percentage}%)",
+    "on-click": "hyprctl dispatch 'hl.dsp.exec_cmd(\"kitty --class bluetui-float -e bluetui\")'",
   },
 
   "network": {
     "interface": "wl*",
-    "format-wifi": "󰤨",
+    "interval": 1,
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "format-wifi": "{icon}",
     "format-ethernet": "󰈀",
     "format-disconnected": "󰤭",
-    "tooltip-format-wifi": "󰤨  {essid}\n󰩟  {ipaddr}\n󰣺  {signalStrength}%",
-    "tooltip-format-ethernet": "󰈀  {ifname}\n󰩟  {ipaddr}",
+    "tooltip-format-wifi": "󰤨  {essid}\n󰩟  {ipaddr}\n󰇚  {bandwidthDownBytes}\n󰕒  {bandwidthUpBytes}",
+    "tooltip-format-ethernet": "󰈀  {ifname}\n󰩟  {ipaddr}\n󰇚  {bandwidthDownBytes}\n󰕒  {bandwidthUpBytes}",
     "tooltip-format-disconnected": "󰤭  Disconnected",
     "on-click": "kitty --class impala-float -e impala",
   },
@@ -64,6 +118,7 @@
   "clock": {
     "format": "{:%a %b %d  %H:%M}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>",
+    "on-click": "hyprctl dispatch 'hl.dsp.exec_cmd(\"kitty --class calcurse-float -e calcurse\")'",
   },
 
   "battery": {
@@ -71,9 +126,9 @@
       "warning": 30,
       "critical": 15,
     },
-    "format": "{icon} {capacity}%",
-    "format-charging": "󰂄 {capacity}%",
-    "format-plugged": "󰚥 {capacity}%",
+    "format": "{icon}",
+    "format-charging": "󰂄",
+    "format-plugged": "󰚥",
     "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
     "tooltip-format": "{capacity}% • {timeTo}",
     "tooltip-format-charging": "{capacity}% • Charging ({timeTo})",
@@ -90,12 +145,17 @@
       "headset": "󰋎",
       "default": ["󰕿", "󰖀", "󰕾"],
     },
-    "on-click": "pavucontrol",
+    "on-click": "kitty --class wiremix-float -e wiremix",
   },
 
   "backlight": {
     "format": "{icon} {percent}%",
     "format-icons": ["󰃞", "󰃟", "󰃠"],
+  },
+
+  "tray": {
+    "icon-size": 14,
+    "spacing": 12,
   },
 
   "custom/power-menu": {
