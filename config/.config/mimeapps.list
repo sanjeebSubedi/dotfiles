@@ -19,6 +19,7 @@ text/csv=sc-im.desktop
 text/x-csv=sc-im.desktop
 application/csv=sc-im.desktop
 x-scheme-handler/claude-cli=claude-code-url-handler.desktop
+x-scheme-handler/viber=viber.desktop
 
 [Added Associations]
 application/pdf=org.pwmt.zathura.desktop;
