@@ -8,6 +8,10 @@ alias lsa='ls -a'
 alias ll='eza -la --icons --git --group-directories-first'
 alias lt='eza --tree --level=2 --long --icons --git'
 
+if command -v zoxide >/dev/null 2>&1; then
+    alias cd="z"
+fi
+
 alias zed='zeditor'
 
 alias rg='rg --smart-case'
