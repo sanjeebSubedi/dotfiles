@@ -40,7 +40,7 @@ end
 local function setup_workspaces()
     for i = 1, 10 do
         local key = i % 10
-        bind(main_mod .. " + " .. key, hl.dsp.focus({ workspace = i }))
+        bind(main_mod .. " + " .. key, exec("~/.config/hypr/scripts/switch-workspace.sh " .. i))
         bind(main_mod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
     end
 end
@@ -61,8 +61,8 @@ function M.setup(programs)
     bind(main_mod .. " + L", toggle_layout)
     bind(main_mod .. " + G", toggle_gaps)
     bind(main_mod .. " + M", hl.dsp.window.fullscreen(1))
-    bind(main_mod .. " + N", hl.dsp.window.move({ workspace = "special:minimized", silent = true }))
-    bind(main_mod .. " + SHIFT + N", hl.dsp.workspace.toggle_special("minimized"))
+    bind(main_mod .. " + H", hl.dsp.workspace.toggle_special("hidden"))
+    bind(main_mod .. " + SHIFT + H", exec("~/.config/hypr/scripts/hide-window.sh"))
 
     -- Focus movement.
     bind(main_mod .. " + left", hl.dsp.focus({ direction = "left" }))
