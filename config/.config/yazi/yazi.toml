@@ -2,3 +2,6 @@
 edit = [
     { run = '${EDITOR:-vi} "$@"', block = true, for = "unix" },
 ]
+
+[mgr]
+sort_by = "natural"
