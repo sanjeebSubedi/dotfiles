@@ -80,6 +80,10 @@ window#waybar {
   font-size: 14px;
 }
 
+#battery {
+  min-width: 10px;
+}
+
 #clock:hover,
 #battery:hover,
 #network:hover,
