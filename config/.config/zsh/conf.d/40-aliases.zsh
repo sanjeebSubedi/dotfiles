@@ -18,8 +18,6 @@ alias rg='rg --smart-case'
 alias rgf='rg --files-with-matches'
 alias f='fd --hidden --exclude .git'
 
-alias cat='bat'
-
 if command -v delta >/dev/null 2>&1; then
     alias diff='delta'
 fi
