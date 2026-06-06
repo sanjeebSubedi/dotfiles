@@ -1,12 +1,13 @@
+local default_gaps = { gaps_in = 5, gaps_out = 8 }
+
 hl.config({
 	general = {
-		gaps_in = 5,
-		gaps_out = 8,
+		gaps_in = default_gaps.gaps_in,
+		gaps_out = default_gaps.gaps_out,
 		border_size = 1,
 		col = {
-			-- active_border = "rgb(B8BB26)",
 			active_border = "rgb(A7C080)",
-			inactive_border = "rgb(333C43)",
+			inactive_border = "rgb(2E383C)",
 		},
 		resize_on_border = false,
 		allow_tearing = false,
@@ -88,3 +89,5 @@ hl.animation({ leaf = "workspaces", enabled = true, speed = 1.94, bezier = "almo
 hl.animation({ leaf = "workspacesIn", enabled = true, speed = 1.21, bezier = "almostLinear", style = "fade" })
 hl.animation({ leaf = "workspacesOut", enabled = true, speed = 1.94, bezier = "almostLinear", style = "fade" })
 hl.animation({ leaf = "zoomFactor", enabled = true, speed = 7, bezier = "quick" })
+
+return { default_gaps = default_gaps }

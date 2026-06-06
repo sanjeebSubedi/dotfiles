@@ -23,7 +23,8 @@ packages are installed.
   `xdg-desktop-portal-hyprland`.
 - zsh uses XDG paths, Starship, zoxide, fzf, and modern CLI replacements.
 - Fontconfig prefers SF Pro for sans text, Berkeley/JetBrains Mono for mono,
-  and Noto/Symbols/Emoji fallbacks.
+  and Noto/Symbols/Emoji fallbacks; Geist is an accent face (Hyprlock, Mako).
+  SF Pro optical sizing is automatic: Text below 20pt, Display at 20pt and up.
 - Runtime state, caches, history, and selected wallpapers are kept outside the
   repository.
 
@@ -144,6 +145,16 @@ Fonts and appearance:
 inter-font noto-fonts noto-fonts-cjk noto-fonts-emoji
 ttf-jetbrains-mono-nerd ttf-berkeley-mono-nerd nerd-fonts-symbols
 papirus-icon-theme bibata-cursor-theme
+```
+
+Geist Sans/Mono (Hyprlock, Mako) are not in the official repos: install from the
+AUR (`otf-geist-font`) or drop the TTFs into `~/.local/share/fonts`.
+
+Berkeley Mono is commercial and Nerd-Font-patched by hand (non-Mono, for full-size
+icons), patched per weight with:
+
+```sh
+font-patcher "Berkeley Mono Regular.ttf" --complete --has-no-italic
 ```
 
 Optional or machine-specific:

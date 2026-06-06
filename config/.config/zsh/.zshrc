@@ -5,4 +5,4 @@ for zsh_config in "$ZDOTDIR"/conf.d/*.zsh(N); do
 done
 unset zsh_config
 
-. "$HOME/.local/share/../bin/env"
+[[ -r "$HOME/.local/bin/env" ]] && . "$HOME/.local/bin/env"
