@@ -116,7 +116,7 @@
     },
     "format": "{icon}",
     "format-charging": "󰂄",
-    "format-plugged": "󰚥",
+    "format-plugged": "",
     "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
     "tooltip-format": "{capacity}% • {timeTo}",
     "tooltip-format-charging": "{capacity}% • Charging ({timeTo})",
@@ -126,11 +126,11 @@
   },
   "pulseaudio": {
     "format": "{icon}",
-    "format-muted": "󰝟",
+    "format-muted": "",
     "format-icons": {
-      "headphone": "󰋋",
-      "headset": "󰋎",
-      "default": ["󰕿", "󰖀", "󰕾"],
+      "headphone": "",
+      "headset": "",
+      "default": ["", "", ""],
     },
     "tooltip-format": "{volume}%",
     "on-click": "kitty --class wiremix-float -e wiremix",
@@ -145,7 +145,7 @@
     "reverse-direction": true,
   },
   "custom/power-menu": {
-    "format": "⏻",
+    "format": "",
     "tooltip-format": "Power Menu",
     "on-click": "wlogout -b 5 -r 1 -c 5 -L 500 -R 500 -T 450 -B 450",
   },
