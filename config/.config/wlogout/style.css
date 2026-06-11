@@ -1,50 +1,56 @@
+/* Everforest Dark Hard, adapted from HyprNova's nova.css.
+   The window is translucent; the frosted look comes from the Hyprland
+   layerrule blur on the logout_dialog layer (rules.lua).
+   Selection (keyboard focus and mouse hover share it) is a subtle
+   translucent fill plus an accent ring, not a solid block. No zoom. */
+
 * {
     background-image: none;
     font-family: "SF Pro Text", "JetBrainsMono Nerd Font";
-    font-size: 14px;
+    font-size: 14pt;
 }
 
 window {
-    background-color: rgba(45, 53, 59, 0.9);
+    color: #D3C6AA;
+    background-color: rgba(36, 42, 46, 0.45);
 }
 
 button {
-    color: #D3C6AA;
-    background-color: #3A454A;
-    border: 2px solid #4F5B58;
+    background-color: transparent;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 25%;
-    border-radius: 10px;
-    margin: 5px;
-    padding: 10px;
+    background-size: 28%;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    margin: 28px;
+    color: #859289;
+    transition: background-color 0.2s ease-in, border-color 0.2s ease-in, color 0.2s ease-in;
 }
 
 button:focus,
-button:active,
 button:hover {
-    background-color: #4F5B58;
-    border-color: #7FBBB3;
-    color: #7FBBB3;
+    background-color: rgba(167, 192, 128, 0.15);
+    border-color: #A7C080;
+    color: #D3C6AA;
     outline-style: none;
 }
 
 #lock {
-    background-image: image(url("/usr/share/wlogout/icons/lock.png"));
+    background-image: image(url("/home/sanjeeb/.config/wlogout/icons/lock.png"));
 }
 
 #logout {
-    background-image: image(url("/usr/share/wlogout/icons/logout.png"));
+    background-image: image(url("/home/sanjeeb/.config/wlogout/icons/logout.png"));
 }
 
 #suspend {
-    background-image: image(url("/usr/share/wlogout/icons/suspend.png"));
+    background-image: image(url("/home/sanjeeb/.config/wlogout/icons/suspend.png"));
 }
 
 #reboot {
-    background-image: image(url("/usr/share/wlogout/icons/reboot.png"));
+    background-image: image(url("/home/sanjeeb/.config/wlogout/icons/reboot.png"));
 }
 
 #shutdown {
-    background-image: image(url("/usr/share/wlogout/icons/shutdown.png"));
+    background-image: image(url("/home/sanjeeb/.config/wlogout/icons/shutdown.png"));
 }

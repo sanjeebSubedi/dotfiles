@@ -110,3 +110,14 @@ hl.layer_rule({
 	},
 	no_anim = true,
 })
+
+-- Frosted-glass wlogout: its window is translucent (style.css) and the
+-- compositor blurs what's behind it.
+hl.layer_rule({
+	name = "blur-wlogout",
+	match = {
+		namespace = "logout_dialog",
+	},
+	blur = true,
+	ignore_alpha = 0.2,
+})

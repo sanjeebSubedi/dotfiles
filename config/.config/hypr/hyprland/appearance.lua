@@ -25,10 +25,13 @@ hl.config({
 			render_power = 3,
 			color = "rgba(1a1a1aee)",
 		},
+		-- Blur only renders behind translucent surfaces that opt in; every
+		-- window and the bar are opaque, so in practice this is just the
+		-- frosted wlogout layer (layerrule in rules.lua).
 		blur = {
-			enabled = false,
-			size = 3,
-			passes = 1,
+			enabled = true,
+			size = 6,
+			passes = 2,
 			vibrancy = 0.1696,
 		},
 	},
