@@ -1,0 +1,20 @@
+# Atuin shell history. Local-only: sync stays off until `atuin register`
+# or `atuin login` is run on purpose.
+
+# Vim-style keys in the search TUI (Esc to normal mode, j/k to move).
+keymap_mode = "vim-insert"
+
+# Compact inline list under the prompt instead of fullscreen.
+style = "compact"
+inline_height = 18
+
+# Enter runs the selected command immediately; Tab inserts it for editing.
+enter_accept = true
+
+search_mode = "fuzzy"
+# Default filter scope; Ctrl-R inside the TUI cycles
+# global -> host -> session -> directory.
+filter_mode = "global"
+
+# Arch handles updates.
+update_check = false

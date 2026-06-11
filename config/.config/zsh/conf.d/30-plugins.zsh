@@ -18,5 +18,5 @@ if [[ -r /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substri
 fi
 
 if command -v zoxide >/dev/null 2>&1; then
-    eval "$(zoxide init zsh)"
+    eval "$(zoxide init zsh --cmd cd)"
 fi
