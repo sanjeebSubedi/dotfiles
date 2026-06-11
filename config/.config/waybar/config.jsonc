@@ -7,11 +7,12 @@
   "modules-left": ["custom/arch", "hyprland/workspaces"],
   "modules-center": ["clock"],
   "modules-right": [
+    "custom/recording",
     "group/controls-expander",
     "bluetooth#connected",
     "idle_inhibitor#outside",
-    "pulseaudio",
     "network",
+    "pulseaudio",
     "battery",
     "custom/power-menu",
   ],
@@ -68,7 +69,7 @@
     "tooltip-format-connected": "{controller_alias}\n\n{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}",
     "tooltip-format-enumerate-connected-battery": "{device_alias} ({device_battery_percentage}%)",
-    "on-click": "hyprctl dispatch 'hl.dsp.exec_cmd(\"kitty --class bluetui-float -e bluetui\")'",
+    "on-click": "hyprctl dispatch 'hl.dsp.exec_cmd(\"~/.config/hypr/scripts/bluetui.sh\")'",
   },
   "bluetooth#connected": {
     "format": "",
@@ -81,11 +82,10 @@
     "tooltip-format-connected": "{controller_alias}\n\n{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}",
     "tooltip-format-enumerate-connected-battery": "{device_alias} ({device_battery_percentage}%)",
-    "on-click": "hyprctl dispatch 'hl.dsp.exec_cmd(\"kitty --class bluetui-float -e bluetui\")'",
+    "on-click": "hyprctl dispatch 'hl.dsp.exec_cmd(\"~/.config/hypr/scripts/bluetui.sh\")'",
   },
   "network": {
-    "interface": "wl*",
-    "interval": 1,
+    "interval": 3,
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
     "format-wifi": "{icon}",
     "format-ethernet": "󰈀",
@@ -93,7 +93,7 @@
     "tooltip-format-wifi": "󰤨  {essid}\n󰩟  {ipaddr}\n󰇚  {bandwidthDownBytes}\n󰕒  {bandwidthUpBytes}",
     "tooltip-format-ethernet": "󰈀  {ifname}\n󰩟  {ipaddr}\n󰇚  {bandwidthDownBytes}\n󰕒  {bandwidthUpBytes}",
     "tooltip-format-disconnected": "󰤭  Disconnected",
-    "on-click": "kitty --class impala-float -e impala",
+    "on-click": "hyprctl dispatch 'hl.dsp.exec_cmd(\"kitty --class impala-float -e impala\")'",
   },
   "custom/arch": {
     "format": "󰣇",
@@ -105,7 +105,7 @@
     "format": "{name}",
   },
   "clock": {
-    "format": "{:%a %b %d  %H:%M}",
+    "format": "{:%a %H:%M}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>",
     "on-click": "hyprctl dispatch 'hl.dsp.exec_cmd(\"kitty --class calcurse-float -e calcurse\")'",
   },
@@ -122,7 +122,7 @@
     "tooltip-format-charging": "{capacity}% • Charging ({timeTo})",
     "tooltip-format-plugged": "{capacity}% • Plugged in",
     "tooltip-format-full": "Full",
-    "on-click": "~/.config/hypr/scripts/power-profile.sh",
+    "on-click": "hyprctl dispatch 'hl.dsp.exec_cmd(\"~/.config/hypr/scripts/power-profile.sh\")'",
   },
   "pulseaudio": {
     "format": "{icon}",
@@ -133,7 +133,7 @@
       "default": ["", "", ""],
     },
     "tooltip-format": "{volume}%",
-    "on-click": "kitty --class wiremix-float -e wiremix",
+    "on-click": "hyprctl dispatch 'hl.dsp.exec_cmd(\"kitty --class wiremix-float -e wiremix\")'",
   },
   "backlight": {
     "format": "{icon} {percent}%",
@@ -147,6 +147,14 @@
   "custom/power-menu": {
     "format": "",
     "tooltip-format": "Power Menu",
-    "on-click": "wlogout -b 5 -r 1 -c 5 -L 500 -R 500 -T 450 -B 450",
+    "on-click": "hyprctl dispatch 'hl.dsp.exec_cmd(\"~/.config/hypr/scripts/wlogout.sh\")'",
+  },
+  "custom/recording": {
+    "exec": "~/.config/hypr/scripts/screen-record.sh status",
+    "return-type": "json",
+    "format": "{}",
+    "interval": "once",
+    "signal": 8,
+    "on-click": "hyprctl dispatch 'hl.dsp.exec_cmd(\"~/.config/hypr/scripts/screen-record.sh screen\")'",
   },
 }

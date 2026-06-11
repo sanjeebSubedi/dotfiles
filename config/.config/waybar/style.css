@@ -1,46 +1,46 @@
 * {
-  border: none;
-  border-radius: 0;
-  font-family: "JetBrainsMono Nerd Font Propo";
-  font-size: 14px;
-  min-height: 0;
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font Propo";
+    font-size: 14px;
+    min-height: 0;
 }
 
 window#waybar {
-  background: #232a2e;
-  color: white;
-  margin: 0px;
-  padding: 0px;
+    background: #232a2e;
+    color: white;
+    margin: 0px;
+    padding: 0px;
 }
 
 #custom-arch {
-  background: transparent;
-  color: #7fbbb3;
-  font-size: 19px;
-  padding: 0 4px 0 6px;
-  margin: 0;
+    background: transparent;
+    color: #7fbbb3;
+    font-size: 19px;
+    padding: 0 4px 0 6px;
+    margin: 0;
 }
 
 #workspaces {
-  background: transparent;
-  margin: 0 4px;
-  padding: 0 4px;
-  border-radius: 0;
+    background: transparent;
+    margin: 0 4px;
+    padding: 0 4px;
+    border-radius: 0;
 }
 
 #workspaces button {
-  background: transparent;
-  padding: 0 4px;
-  border-radius: 4px;
-  color: #d3c6aa;
+    background: transparent;
+    padding: 0 4px;
+    border-radius: 4px;
+    color: #d3c6aa;
 }
 
 #workspaces button:hover {
-  background: #2d353b;
+    background: #2d353b;
 }
 
 #workspaces button.active {
-  color: #a7c080;
+    color: #a7c080;
 }
 
 #clock,
@@ -57,11 +57,11 @@ window#waybar {
 #idle_inhibitor.tray,
 #idle_inhibitor.outside,
 #custom-power-menu {
-  background: transparent;
-  padding: 0 8px;
-  margin: 0 2px;
-  border-radius: 0;
-  color: #d3c6aa;
+    background: transparent;
+    padding: 0 8px;
+    margin: 0 2px;
+    border-radius: 0;
+    color: #d3c6aa;
 }
 
 #battery,
@@ -77,11 +77,24 @@ window#waybar {
 #idle_inhibitor.tray,
 #idle_inhibitor.outside,
 #custom-power-menu {
-  font-size: 14px;
+    font-size: 14px;
 }
 
-#battery {
-  min-width: 10px;
+/* Width floor so the bar doesn't shift when a module's glyph changes
+   (wifi strength, volume level, battery charge, …). */
+#battery,
+#network,
+#pulseaudio,
+#backlight,
+#bluetooth,
+#bluetooth.tray,
+#bluetooth.connected,
+#idle_inhibitor,
+#idle_inhibitor.tray,
+#idle_inhibitor.outside,
+#custom-recording,
+#custom-power-menu {
+    min-width: 16px;
 }
 
 #clock:hover,
@@ -96,78 +109,89 @@ window#waybar {
 #bluetooth:hover,
 #bluetooth.tray:hover,
 #bluetooth.connected:hover {
-  color: #7fbbb3;
+    color: #7fbbb3;
 }
 
 #custom-expand-icon {
-  color: #859289;
-  padding: 0 6px;
+    color: #859289;
+    padding: 0 6px;
 }
 
 #custom-expand-icon:hover {
-  color: #a7c080;
+    color: #a7c080;
 }
 
 #tray {
-  padding: 0 8px;
+    padding: 0 8px;
 }
 
 #clock {
-  margin-right: 10px;
-  font-weight: 600;
+    margin-right: 10px;
+    font-weight: 600;
 }
 
 #idle_inhibitor.activated {
-  color: #a7c080;
+    color: #a7c080;
 }
 
 #idle_inhibitor.deactivated {
-  color: #859289;
+    color: #859289;
 }
 
 #idle_inhibitor.tray.activated,
 #idle_inhibitor.outside.deactivated {
-  opacity: 0;
-  font-size: 0;
-  min-width: 0;
-  padding: 0;
-  margin: 0;
+    opacity: 0;
+    font-size: 0;
+    min-width: 0;
+    padding: 0;
+    margin: 0;
 }
 
 /* Bluetooth states */
 #bluetooth {
-  color: #859289;
+    color: #859289;
 }
 
 #bluetooth.connected,
 #bluetooth.connected.connected {
-  color: #7fbbb3;
+    color: #7fbbb3;
 }
 
 #bluetooth.disabled,
 #bluetooth.off,
 #bluetooth.tray.disabled,
 #bluetooth.tray.off {
-  color: #5c6a72;
+    color: #5c6a72;
+}
+
+#custom-recording {
+    background: transparent;
+    padding: 0 8px;
+    margin: 0 2px;
+    font-size: 14px;
+}
+
+#custom-recording.recording {
+    color: #e67e80;
 }
 
 #custom-power-menu {
-  color: #d3c6aa;
-  margin-right: 10px;
+    color: #d3c6aa;
+    margin-right: 10px;
 }
 
 #custom-power-menu:hover {
-  color: #7fbbb3;
+    color: #7fbbb3;
 }
 
 #battery.charging {
-  color: #a7c080;
+    color: #a7c080;
 }
 
 #battery.warning {
-  color: #dbbc7f;
+    color: #dbbc7f;
 }
 
 #battery.critical {
-  color: #e67e80;
+    color: #e67e80;
 }
