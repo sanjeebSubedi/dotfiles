@@ -1,0 +1,6 @@
+[Unit]
+Description=Low battery notification check
+
+[Service]
+Type=oneshot
+ExecStart=%h/.config/hypr/scripts/battery-notify.sh
