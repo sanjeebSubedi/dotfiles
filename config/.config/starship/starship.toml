@@ -71,7 +71,7 @@ renamed = "» "
 
 [python]
 style = "bg:color_bg4 fg:color_yellow"
-format = "[ $symbol $version ]($style)"
+format = '[ $symbol $version( \($virtualenv\)) ]($style)'
 symbol = ""
 
 [golang]

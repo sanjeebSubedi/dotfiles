@@ -2,14 +2,11 @@
 
 set -euo pipefail
 
-current_workspace="$(
-    hyprctl activeworkspace -j |
-        awk -F ': ' '/"id":/ { gsub(/,/, "", $2); print $2; exit }'
-)"
+current_workspace="$(hyprctl activeworkspace -j | jq -r '.id')"
 
 hyprctl dispatch 'hl.dsp.window.move({ workspace = "special:hidden", silent = true })' >/dev/null
 
-if hyprctl monitors -j | grep -q '"name": "special:hidden"'; then
+if hyprctl monitors -j | jq -e 'any(.[]; .specialWorkspace.name == "special:hidden")' >/dev/null; then
     hyprctl dispatch 'hl.dsp.workspace.toggle_special("hidden")' >/dev/null
 fi
 

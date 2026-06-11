@@ -86,8 +86,8 @@ function M.setup(programs)
 	-- Volume and brightness.
 	bind("XF86AudioRaiseVolume", exec("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
 	bind("XF86AudioLowerVolume", exec("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), { locked = true, repeating = true })
-	bind("XF86AudioMute", exec("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), { locked = true, repeating = true })
-	bind("XF86AudioMicMute", exec("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"), { locked = true, repeating = true })
+	bind("XF86AudioMute", exec("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), { locked = true })
+	bind("XF86AudioMicMute", exec("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"), { locked = true })
 	bind("XF86MonBrightnessUp", exec("brightnessctl -e4 -n2 set 5%+"), { locked = true, repeating = true })
 	bind("XF86MonBrightnessDown", exec("brightnessctl -e4 -n2 set 5%-"), { locked = true, repeating = true })
 
@@ -108,7 +108,7 @@ function M.setup(programs)
 	bind(main_mod .. " + ALT + R", exec("~/.config/hypr/scripts/screen-record.sh region"))
 	bind(main_mod .. " + CTRL + R", exec("~/.config/hypr/scripts/screen-record.sh region-audio"))
 
-	bind(main_mod .. " + BackSpace", exec("wlogout -b 5 -r 1 -c 5 -L 500 -R 500 -T 450 -B 450"))
+	bind(main_mod .. " + BackSpace", exec("~/.config/hypr/scripts/wlogout.sh"))
 	bind(main_mod .. " + SHIFT + C", exec("hyprpicker -a"))
 end
 

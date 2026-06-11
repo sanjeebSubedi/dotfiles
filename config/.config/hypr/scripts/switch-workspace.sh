@@ -12,7 +12,7 @@ case "$workspace" in
         ;;
 esac
 
-if hyprctl monitors -j | grep -q '"name": "special:hidden"'; then
+if hyprctl monitors -j | jq -e 'any(.[]; .specialWorkspace.name == "special:hidden")' >/dev/null; then
     hyprctl dispatch 'hl.dsp.workspace.toggle_special("hidden")' >/dev/null
 fi
 
