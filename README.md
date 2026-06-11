@@ -16,15 +16,36 @@ packages are installed.
   `config/.config/hypr/hyprland/`.
 - Default layout is `scrolling`, with a keybind to toggle between `scrolling`
   and `dwindle`.
-- Waybar is compact, 28px tall, and uses a drawer for tray-style controls.
+- Waybar is compact, 28px tall, and uses a drawer for tray-style controls. A red
+  indicator appears while a screen recording is active; clicking it stops the
+  recording.
+- Terminal/TUI/bar surfaces use Everforest Dark Hard; GTK apps intentionally use
+  a custom `enhanced-gruvbox` theme.
+- The lockscreen is a two-column hyprlock card layout (clock, profile, media,
+  connectivity, battery) over a dedicated blurred wallpaper; wlogout is a
+  frosted full-screen overlay with Everforest-tinted icons.
 - Wallpaper selection is handled from `imv`; pressing `w` copies the selected
   image into XDG state and applies it with Hyprpaper.
 - Screen sharing uses `hyprland-preview-share-picker` through
   `xdg-desktop-portal-hyprland`.
-- zsh uses XDG paths, Starship, zoxide, fzf, and modern CLI replacements.
-- Fontconfig prefers SF Pro for sans text, Berkeley/JetBrains Mono for mono,
-  and Noto/Symbols/Emoji fallbacks; Geist is an accent face (Hyprlock, Mako).
-  SF Pro optical sizing is automatic: Text below 20pt, Display at 20pt and up.
+- The session is uwsm-managed when `uwsm` is installed (`.zprofile` falls back
+  to plain `start-hyprland` without it): Hyprland runs as a systemd user unit,
+  `environment.d` applies, and the compositor logs to journald.
+- zsh uses XDG paths, Starship, zoxide, fzf, Atuin history, vi keybindings
+  with mode-aware cursor shape, a tuned completion system, and modern CLI
+  replacements.
+- A systemd user timer (`battery-notify.timer`) sends Mako notifications at
+  20% and 10% battery while discharging.
+- Fontconfig prefers SF Pro for sans text, Merriweather for serif,
+  Berkeley/JetBrains Mono for mono, with Noto/Symbols/Emoji fallbacks; Geist is
+  an accent face (Hyprlock). SF Pro optical sizing is automatic: Text below
+  20pt, Display at 20pt and up.
+- Rendering policy is RGB subpixel antialiasing + slight hinting everywhere
+  (fontconfig, gsettings, GTK ini agree; subpixel mainly benefits Chrome and
+  XWayland — most Wayland toolkits render grayscale regardless). FreeType stem
+  darkening is exported session-wide from `zsh/.zshenv`. XWayland Xft apps get
+  `Xft.dpi: 128` (96 × the 4/3 panel scale) via `.Xresources`, merged at
+  session start (requires `xorg-xrdb`).
 - Runtime state, caches, history, and selected wallpapers are kept outside the
   repository.
 
@@ -50,6 +71,10 @@ packages are installed.
 │   │   ├── calcurse/                     # Calendar and todo config
 │   │   ├── sc-im/                        # Spreadsheet config
 │   │   ├── zathura/                      # PDF reader config
+│   │   ├── qt6ct/                        # Qt application theming (Kvantum)
+│   │   ├── atuin/                        # Shell history database config
+│   │   ├── autostart/                    # XDG autostart overrides (hides blueman)
+│   │   ├── systemd/                      # User services (battery notifier)
 │   │   └── mimeapps.list                 # Default application associations
 │   └── .stow-local-ignore
 ├── zsh/
@@ -106,7 +131,7 @@ Core desktop:
 
 ```sh
 hyprland xdg-desktop-portal-hyprland hyprpaper hyprlock hypridle hyprsunset
-hyprpolkitagent waybar mako fuzzel wlogout kitty
+hyprpolkitagent waybar mako fuzzel wlogout kitty uwsm
 ```
 
 Hyprland utilities:
@@ -128,9 +153,12 @@ bluez bluez-utils bluetui
 Shell and CLI tools:
 
 ```sh
-zsh starship zoxide fzf fd ripgrep eza bat delta
+zsh starship zoxide fzf fd ripgrep eza bat delta atuin
 zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search
 ```
+
+Optional: `zsh-fzf-tab` (AUR) turns the tab-completion menu into an fzf picker;
+`25-completion.zsh` picks it up automatically when present.
 
 Applications:
 
@@ -145,6 +173,7 @@ Fonts and appearance:
 inter-font noto-fonts noto-fonts-cjk noto-fonts-emoji
 ttf-jetbrains-mono-nerd ttf-berkeley-mono-nerd nerd-fonts-symbols
 papirus-icon-theme bibata-cursor-theme
+qt6ct kvantum
 ```
 
 Geist Sans/Mono (Hyprlock, Mako) are not in the official repos: install from the
@@ -174,6 +203,13 @@ Enable services that are not started automatically by the dotfiles:
 sudo systemctl enable --now NetworkManager
 sudo systemctl enable --now bluetooth
 systemctl --user enable --now mpd.socket
+systemctl --user enable --now battery-notify.timer
+```
+
+Import existing shell history into Atuin once:
+
+```sh
+atuin import zsh
 ```
 
 Refresh fontconfig after installing fonts:
@@ -238,11 +274,11 @@ workspace behind. Switching to workspaces `1` through `10` closes
 | `SUPER + S` | Region screenshot to clipboard |
 | `SUPER + Shift + S` | Region screenshot through Swappy |
 | `SUPER + Print` | Full screenshot to `~/Pictures/Screenshots` |
-| `SUPER + Shift + R` | Toggle screen recording |
+| `SUPER + Shift + R` | Toggle screen recording (red indicator in Waybar while active) |
 | `SUPER + Alt + R` | Toggle region recording |
 | `SUPER + Ctrl + R` | Toggle region recording with audio |
 | `SUPER + Shift + C` | Pick color with Hyprpicker |
-| `SUPER + Backspace` | Open Wlogout |
+| `SUPER + Backspace` | Toggle Wlogout |
 | `SUPER + Left Mouse` | Drag window |
 | `SUPER + Right Mouse` | Resize window |
 
@@ -265,7 +301,8 @@ Click targets:
 - Clock: open `calcurse` in a floating Kitty window
 - Volume: open `wiremix`
 - Network: open `impala`
-- Bluetooth: open `bluetui`
+- Bluetooth: open `bluetui` (unblocks the rfkill soft-block first, so the
+  adapter can be powered on from the TUI even when it was turned off)
 - Battery: open a power profile menu
 - Power icon: open `wlogout`
 
@@ -291,6 +328,23 @@ The script copies or converts the selected image into
 `~/.local/state/hypr/wallpaper.jpg`, records the source metadata in
 `~/.local/state/hypr/wallpaper-source`, applies the wallpaper through Hyprpaper,
 and avoids repeated work when the selected image has not changed.
+
+## Lockscreen and Power Menu
+
+`hypr/hyprlock.conf` is a two-column card layout adapted from Hyprlock-Dots
+layout 20. hyprlock is keyboard-only by design — the cards are informational,
+not clickable. Its assets live outside the repository and can be swapped by
+replacing the files:
+
+- `~/.local/state/hypr/lock-wallpaper.jpg` — dedicated lock wallpaper
+- `~/.local/state/hypr/profile.png` — avatar (generated Arch logo; replace
+  with a photo if preferred)
+
+wlogout uses HyprNova-style frosted styling: a translucent window blurred by a
+Hyprland layerrule (`logout_dialog` namespace), tinted icons in
+`wlogout/icons/`, and a single prominent style shared by keyboard focus and
+mouse hover. It is launched (and toggled closed) by
+`hypr/scripts/wlogout.sh`, which sizes margins from the focused monitor.
 
 ## Screen Sharing
 

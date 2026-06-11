@@ -64,8 +64,13 @@ will not work.
   is XDG-relative because of this.
 - `config/.config/zsh/.zshrc` sources, in lexical order, every
   `conf.d/*.zsh` fragment. Add new shell config as a numbered fragment
-  (`00-prompt`, `10-history`, `20-options`, `30-plugins`, `40-aliases`,
-  `50-fzf`) rather than editing `.zshrc`.
+  (`00-prompt`, `10-history`, `20-options`, `25-completion`, `30-plugins`,
+  `40-aliases`, `50-fzf`, `55-atuin`) rather than editing `.zshrc`. Order
+  matters: completion before plugins, atuin after fzf so atuin owns Ctrl-R.
+- `config/.config/zsh/.zprofile` starts the session on tty1: a uwsm-managed
+  Hyprland (`uwsm start`) when uwsm is installed, plain `start-hyprland`
+  otherwise. Under uwsm, `autostart.lua` must keep the `uwsm finalize`
+  command first — the compositor unit waits on it.
 
 ## Conventions
 
@@ -74,8 +79,10 @@ will not work.
 - The desktop targets a hybrid GPU laptop: Hyprland runs on the integrated GPU and
   `prime-run` is used for NVIDIA offload. Monitor rules in `monitors.lua` assume
   the laptop panel is `eDP-1` at scale `1.333333`.
-- Theme is Everforest Dark Hard across Waybar, GTK, kitty, etc. Keep color changes
-  consistent with that palette.
+- Theme is Everforest Dark Hard for terminal/TUI/bar surfaces (Waybar, kitty, nvim,
+  fuzzel, mako, hyprlock, starship, yazi). GTK apps intentionally use a custom
+  `enhanced-gruvbox` theme instead — do not "fix" it to Everforest. Keep color
+  changes consistent with the palette of the surface being edited.
 
 See `README.md` for the full keybind table, package list, and post-install service
 setup.
