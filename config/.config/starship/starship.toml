@@ -1,33 +1,24 @@
 "$schema" = "https://starship.rs/config-schema.json"
 
-# Powerline prompt, Everforest Dark Hard. 1-cell Nerd Font glyphs only.
+# Minimal two-line prompt, Everforest Dark Hard. No backgrounds or separators.
 
 command_timeout = 2000
 add_newline = true
 palette = "everforest_dark_hard"
 
 format = """
-[](fg:color_bg2)\
 $directory\
-[](fg:color_bg2 bg:color_bg3)\
 $git_branch\
 $git_status\
-[](fg:color_bg3 bg:color_bg4)\
 $python\
 $golang\
 $rust\
 $nodejs\
-[](fg:color_bg4 bg:color_bg5)\
 $cmd_duration\
-[](fg:color_bg5)\
 $line_break\
 $character"""
 
 [palettes.everforest_dark_hard]
-color_bg2 = "#374145"
-color_bg3 = "#2e383c"
-color_bg4 = "#272e33"
-color_bg5 = "#1e2326"
 color_fg     = "#d3c6aa"
 color_red    = "#e67e80"
 color_green  = "#a7c080"
@@ -37,31 +28,31 @@ color_orange = "#e69875"
 color_grey   = "#859289"
 
 [directory]
-style = "bg:color_bg2 fg:color_fg"
-format = "[ $path ]($style)"
+style = "bold color_blue"
+format = "[$path]($style)[$read_only]($read_only_style) "
 truncation_length = 3
 truncation_symbol = "…/"
-read_only = "  "
-read_only_style = "bg:color_bg2 fg:color_red"
+read_only = " "
+read_only_style = "color_red"
 
 [directory.substitutions]
 "Documents" = "󰈙 "
-"Downloads" = " "
-"Music" = " "
-"Pictures" = " "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
 
 [git_branch]
-symbol = ""
-style = "bg:color_bg3 fg:color_green"
-format = "[ $symbol $branch ]($style)"
+symbol = ""
+style = "color_green"
+format = "[$symbol $branch]($style) "
 
 [git_status]
-style = "bg:color_bg3 fg:color_red"
-format = "[$all_status$ahead_behind ]($style)"
-ahead = " ${count}"
-behind = " ${count}"
-diverged = " ${ahead_count}  ${behind_count}"
-deleted = " ${count}"
+style = "color_red"
+format = "[$all_status$ahead_behind]($style)"
+ahead = " ${count} "
+behind = " ${count} "
+diverged = " ${ahead_count}  ${behind_count} "
+deleted = " ${count} "
 conflicted = "= "
 untracked = "? "
 stashed = "* "
@@ -70,30 +61,30 @@ staged = "+ "
 renamed = "» "
 
 [python]
-style = "bg:color_bg4 fg:color_yellow"
-format = '[ $symbol $version( \($virtualenv\)) ]($style)'
-symbol = ""
+style = "color_yellow"
+format = '[$symbol $version( \($virtualenv\))]($style) '
+symbol = ""
 
 [golang]
-style = "bg:color_bg4 fg:color_blue"
-format = "[ $symbol $version ]($style)"
-symbol = ""
+style = "color_blue"
+format = "[$symbol $version]($style) "
+symbol = ""
 
 [rust]
-style = "bg:color_bg4 fg:color_orange"
-format = "[ $symbol $version ]($style)"
-symbol = ""
+style = "color_orange"
+format = "[$symbol $version]($style) "
+symbol = ""
 
 [nodejs]
-style = "bg:color_bg4 fg:color_green"
-format = "[ $symbol $version ]($style)"
-symbol = ""
+style = "color_green"
+format = "[$symbol $version]($style) "
+symbol = ""
 
 [cmd_duration]
 min_time = 500
-format = "[  $duration ](bg:color_bg5 fg:color_grey)"
+format = "[took $duration](color_grey) "
 
 [character]
-success_symbol = "[ ❯](bold color_green)"
-error_symbol = "[ ❯](bold color_red)"
-vimcmd_symbol = "[ ❮](bold color_green)"
+success_symbol = "[❯](bold color_green)"
+error_symbol = "[❯](bold color_red)"
+vimcmd_symbol = "[❮](bold color_green)"
