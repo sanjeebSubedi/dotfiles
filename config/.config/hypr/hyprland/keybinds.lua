@@ -50,6 +50,7 @@ function M.setup(programs)
 	bind(main_mod .. " + W", exec(programs.browser))
 	bind(main_mod .. " + E", exec(programs.terminal .. " -e " .. programs.file_manager))
 	bind(main_mod .. " + R", exec(programs.gui_file_manager))
+	bind(main_mod .. " + comma", exec(programs.terminal .. " -e rmpc"))
 	bind(main_mod .. " + SUPER_L", exec("pkill " .. programs.menu .. " || " .. programs.menu), { release = true })
 
 	-- Window management.
