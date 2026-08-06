@@ -39,7 +39,7 @@ zsh starship zoxide fzf fd ripgrep eza bat delta atuin \
 zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search
 
 # Applications
-neovim yazi thunar imv mpv zathura sc-im calcurse google-chrome mpd
+neovim yazi thunar imv mpv zathura sc-im calcurse google-chrome mpd rmpc
 
 # Fonts and appearance
 inter-font noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-jetbrains-mono-nerd \
@@ -72,6 +72,7 @@ Monitor config targets the laptop panel as `eDP-1` at scale `1.333333`.
 | `SUPER` | Fuzzel launcher |
 | `SUPER + Return` | Kitty |
 | `SUPER + W` / `E` / `R` | Chrome / Yazi / Thunar |
+| `SUPER + ,` | rmpc music player (mpd) |
 | `SUPER + Q` | Close window |
 | `SUPER + F` / `P` | Toggle floating / pseudo-tiling |
 | `SUPER + L` | Toggle `scrolling`/`dwindle` layout |
