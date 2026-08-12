@@ -1,0 +1,20 @@
+#![enable(implicit_some)]
+#![enable(unwrap_newtypes)]
+#![enable(unwrap_variant_newtypes)]
+// rmpc client config. Only fields that differ from rmpc's defaults are set
+// here; everything else falls back to the built-in defaults. Run
+// `rmpc config` to print the full default config for reference.
+(
+    // mpd is reached over its localhost TCP socket (see ~/.config/mpd/mpd.conf).
+    address: "127.0.0.1:6600",
+    // Everforest Dark Hard theme, loaded from themes/everforest.ron.
+    theme: "everforest",
+    // Auto-detect the terminal's image protocol (kitty graphics in kitty).
+    album_art: (
+        method: Auto,
+        max_size_px: (width: 1200, height: 1200),
+        vertical_align: Center,
+        horizontal_align: Center,
+    ),
+    volume_step: 5,
+)

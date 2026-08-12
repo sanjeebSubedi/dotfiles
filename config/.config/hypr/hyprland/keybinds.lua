@@ -47,6 +47,7 @@ end
 function M.setup(programs)
 	-- Application launchers.
 	bind(main_mod .. " + RETURN", exec(programs.terminal))
+	bind(main_mod .. " + SHIFT + RETURN", exec(programs.ghostty))
 	bind(main_mod .. " + W", exec(programs.browser))
 	bind(main_mod .. " + E", exec(programs.terminal .. " -e " .. programs.file_manager))
 	bind(main_mod .. " + R", exec(programs.gui_file_manager))

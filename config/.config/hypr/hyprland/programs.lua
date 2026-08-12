@@ -9,6 +9,7 @@ end
 
 return {
 	terminal = env_or("TERMINAL", "kitty"),
+	ghostty = "ghostty",
 	file_manager = env_or("FILE_MANAGER", "yazi"),
 	gui_file_manager = "thunar",
 	browser = "google-chrome-stable",

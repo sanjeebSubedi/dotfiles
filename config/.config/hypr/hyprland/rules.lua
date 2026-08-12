@@ -49,17 +49,6 @@ hl.window_rule({
 })
 
 hl.window_rule({
-	name = "yazi-terminal-popup",
-	match = {
-		class = "^yazi-term$",
-	},
-	float = true,
-	size = "monitor_w*0.8 monitor_h*0.8",
-	rounding = 12,
-	center = true,
-})
-
-hl.window_rule({
 	name = "impala-network-popup",
 	match = {
 		class = "^impala-float$",

@@ -4,7 +4,7 @@ set -euo pipefail
 
 current_workspace="$(hyprctl activeworkspace -j | jq -r '.id')"
 
-hyprctl dispatch 'hl.dsp.window.move({ workspace = "special:hidden", silent = true })' >/dev/null
+hyprctl dispatch 'hl.dsp.window.move({ workspace = "special:hidden", follow = false })' >/dev/null
 
 if hyprctl monitors -j | jq -e 'any(.[]; .specialWorkspace.name == "special:hidden")' >/dev/null; then
     hyprctl dispatch 'hl.dsp.workspace.toggle_special("hidden")' >/dev/null

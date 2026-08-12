@@ -25,9 +25,9 @@ hl.config({
 			render_power = 3,
 			color = "rgba(1a1a1aee)",
 		},
-		-- Blur only renders behind translucent surfaces that opt in; every
-		-- window and the bar are opaque, so in practice this is just the
-		-- frosted wlogout layer (layerrule in rules.lua).
+		-- Blur renders behind translucent surfaces: kitty
+		-- (background_opacity 0.8) and the frosted wlogout layer
+		-- (layerrule in rules.lua).
 		blur = {
 			enabled = true,
 			size = 6,
@@ -49,7 +49,7 @@ hl.config({
 	},
 
 	scrolling = {
-		column_width = 0.85,
+		column_width = 0.95,
 		direction = "right",
 		focus_fit_method = 1,
 		follow_focus = true,
@@ -65,7 +65,6 @@ hl.config({
 		vrr = 1,
 		enable_swallow = true,
 		swallow_regex = "^(kitty)$",
-		swallow_exception_regex = "^(yazi-term)$",
 	},
 })
 
