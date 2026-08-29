@@ -1,4 +1,4 @@
-local default_gaps = { gaps_in = 5, gaps_out = 8 }
+local default_gaps = { gaps_in = 5, gaps_out = 10 }
 
 hl.config({
 	general = {

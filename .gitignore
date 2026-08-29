@@ -2,6 +2,8 @@ config/.config/zsh/.zsh_history
 assets
 .agents/
 .codex/
+.pi/
+config/.config/yazi/plugins/
 
 # Local reference clone, not part of the dotfiles
 nvim-repo/

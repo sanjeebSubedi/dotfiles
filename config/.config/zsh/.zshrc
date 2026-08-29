@@ -6,3 +6,6 @@ done
 unset zsh_config
 
 [[ -r "$HOME/.local/bin/env" ]] && . "$HOME/.local/bin/env"
+
+# opencode
+export PATH="$HOME/.opencode/bin:$PATH"

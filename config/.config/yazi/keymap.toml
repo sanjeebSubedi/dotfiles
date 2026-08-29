@@ -1,4 +1,6 @@
 [mgr]
 prepend_keymap = [
-    { on = [ "!" ], run = '''shell "hyprctl dispatch \"hl.dsp.exec_cmd([[kitty --class yazi-term --directory '$PWD']])\"" --orphan''', desc = "Open terminal here" }
+    { on = [ "!" ], run = '''shell "hyprctl dispatch \"hl.dsp.exec_cmd([[kitty --class yazi-term --directory '$PWD']])\"" --orphan''', desc = "Open terminal here" },
+    { on = [ "M" ], run = "plugin mount", desc = "Mount manager" }
+
 ]
